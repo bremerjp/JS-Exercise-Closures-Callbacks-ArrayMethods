@@ -88,7 +88,7 @@ function processLastItem(stringList, callback) {
  * should return 1000.
 */
 function processSum(numberList, callback) {
-  return callback(numberList.reduce(function(a, b) {
+  return callback(numberList.reduce(function (a, b) {
     return a + b
   }, 0));
 }
@@ -183,7 +183,7 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
 
 function getFullNames(runners) {
   let runnerNames = [];
-  runners.forEach(function(runners) {
+  runners.forEach(function (runners) {
     return runnerNames.push(`${runners.last_name}, ${runners.first_name}`);
   });
   return runnerNames;
@@ -240,7 +240,6 @@ function getRunnersByTShirtSize(runners, tShirtSize) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-
 function tallyUpDonations(runners) {
   return runners.reduce((sum, runner) => {
     return sum + runner.donation;
@@ -265,9 +264,10 @@ function tallyUpDonations(runners) {
 */
 function counterMaker() {
   // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
+  let count = -1;
+  return function counter() {
+    count++;
+    return count;
   }
   // BROKEN CODE ENDS
 }
@@ -292,8 +292,16 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(maxValue) {
+  let count = -1;
+  return function counter() {
+    if (count < maxValue) {
+      count++;
+    } else {
+      count = 0;
+    }
+    return count;
+  }
 }
 
 /////////////// END OF CHALLENGE ///////////////
